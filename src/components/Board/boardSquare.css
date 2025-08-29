@@ -6,4 +6,9 @@
 .coin-container{
     width: 29px;
     height: 29px;
+    background-color: #FFE3FC;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
