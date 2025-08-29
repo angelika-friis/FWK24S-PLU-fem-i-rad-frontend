@@ -1,5 +1,5 @@
 import "./boardSquare.css"
-import Coin from "./Coin/Coin"
+import Coin from "../Coin/Coin"
 
 export const BoardSquare = () => {
     return(

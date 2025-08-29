@@ -11,6 +11,9 @@ export const BoardRow = () => {
             <BoardSquare/>
             <BoardSquare/>
             <BoardSquare/>
+            <BoardSquare/>
+            <BoardSquare/>
+            <BoardSquare/>
         </div>
     )
 }

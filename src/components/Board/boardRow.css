@@ -1,7 +1,6 @@
 .board-row-container{
-    height: 50px;
-    width: 500px;
-    border-bottom: 1px solid black;
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 5px;
 }
 
