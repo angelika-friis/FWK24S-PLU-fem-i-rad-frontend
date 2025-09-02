@@ -1,6 +1,0 @@
-.board-container{
-    width: 353px;
-    display: grid;
-    grid-template-rows: repeat(10, 1fr);
-    gap: 5px;
-}
