@@ -1,9 +1,10 @@
+import { Outlet } from "react-router-dom";
 import styles from "./AppTemplate.module.css";
 
-const AppTemplate = ({ children }) => {
+const AppTemplate = () => {
     return (
-        <div styles={styles.appTemplate}>
-            {children}
+        <div className={styles.appTemplate}>
+            <Outlet />
         </div>
     );
 }

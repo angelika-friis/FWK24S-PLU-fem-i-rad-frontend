@@ -1,13 +1,15 @@
-import React from "react";
-import { createBrowserRouter, RouterProvider, Route } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import AppTemplate from "../templates/AppTemplate";
+import Login from "../pages/Login";
 
-const Placeholder = () => <h1>Placeholder</h1>;
+const Router = () => {
+    return (
+        <Routes>
+            <Route path="/login" element={<AppTemplate />}>
+                <Route index element={<Login />} />
+            </Route>
+        </Routes>
+    );
+};
 
-export function createRouter() {
-    return createBrowserRouter([{ path: "/", element: <Placeholder /> }]);
-}
-
-export function AppRouter() {
-    const router = React.useMemo(() => createRouter(), []);
-    return <RouterProvider router={router} />;
-}
+export default Router;
