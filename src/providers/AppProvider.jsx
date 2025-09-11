@@ -1,20 +1,17 @@
-import React from "react";
+import React from 'react';
 
-const StylesProvider = ({ children }) => <>{children}</>;
-const RouterProvider = ({ children }) => <>{children}</>;
-const I18nProvider = ({ children }) => <>{children}</>;
-const ErrorBoundary = ({ children }) => <>{children}</>;
+import { ConfigProvider } from './ConfigProvider';
+import { AuthProvider } from './AuthProvider';
+import { ApiProvider } from './ApiProvider';
 
-export default function AppProvider({ children }) {
-    return (
-        <ErrorBoundary>
-            <I18nProvider>
-                <StylesProvider>
-                    <RouterProvider>
-                        {children}
-                    </RouterProvider>
-                </StylesProvider>
-            </I18nProvider>
-        </ErrorBoundary>
-    );
-}
+const AppProvider = ({ children }) => (
+    <ConfigProvider>
+        <AuthProvider>
+            <ApiProvider>{children}</ApiProvider>
+        </AuthProvider>
+    </ConfigProvider>
+);
+export default AppProvider;
+
+
+
