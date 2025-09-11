@@ -1,6 +1,10 @@
+import { LoginForm } from "@akkelw/loginform"
+
 const Login = () => {
     return (
-        <div>Login</div>
+        <div>
+            <LoginForm />
+        </div>
     )
 }
 export default Login
