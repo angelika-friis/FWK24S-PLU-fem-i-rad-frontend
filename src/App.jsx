@@ -6,13 +6,14 @@ import AppTemplate from "./templates/AppTemplate"
 
 function App() {
   return (
-    <AppProvider>
-      <BrowserRouter>
+    <BrowserRouter>
+      <AppProvider>
         <AppTemplate>
           <AppRoutes />
         </AppTemplate>
-      </BrowserRouter>
-    </AppProvider>
+
+      </AppProvider>
+    </BrowserRouter>
   )
 }
 
