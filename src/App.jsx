@@ -1,7 +1,10 @@
-function App() {
+import AppTemplate from "./templates/AppTemplate"
 
+function App() {
   return (
-    <>Vår App</>
+    <AppTemplate>
+      <>Vår App</>
+    </AppTemplate>
   )
 }
 
