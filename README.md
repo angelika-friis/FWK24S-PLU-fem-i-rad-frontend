@@ -4,7 +4,7 @@ Grupparbete i kursen *Paketering, leverans och uppföljning*.
 
 # Starta projektet lokalt
 
-## Initiera projektet
+### Initiera projektet
 
 1. Klona ner projektet.
 
@@ -18,7 +18,7 @@ git clone https://github.com/hampusvh/FWK24S-PLU-tamagotchi-components.git
 npm install
 ```
 
-# Starta Storybook
+## Starta Storybook
 
 Starta så här:
 
@@ -26,22 +26,34 @@ Starta så här:
 npm run storybook
 ```
 
-# Helpers
+## CI: React Build
+
+Varje gång kod pushas körs en GitHub Action som kör `npm run buil`automatiskt.  
+Det säkerställer att projektet kompilerar korrekt.
+
+### Så här ser du resultaten:
+1. Gå till repo på GitHub.
+2. Klicka på fliken **Actions**.
+3. Välj workflow **React Build**.
+4. Öppna senaste körningen för att se loggar och resultat.
+
+
+## Helpers
 
 `src/utils` innehåller små hjälpfunktioner (helpers) som används i hela projektet.
 Syftet är att slippa skriva samma kod flera gånger och göra utvecklingen enklare och mer konsekvent.
 
 
-## Användning
+### Användning
 Alla helpers importeras via barrel-export:
 
 ```js
 import { fetchClient, formatDate, classNames } from "src/util";
 ```
 
-## Lista med helpers och vad de gör
+### Lista med helpers och vad de gör
 
-### 1. `fetchClient`
+#### 1. `fetchClient`
 
 **Vad:** Hämtar data från en server.
 
@@ -51,7 +63,7 @@ import { fetchClient, formatDate, classNames } from "src/util";
 const data = await fetchClient("/users");
 ```
 
-### 2. `formatters`
+#### 2. `formatters`
 
 **Vad:** Ändrar hur datum och nummer visas.
 
@@ -62,7 +74,7 @@ formatDate("2025-09-11");       // "11 sep. 2025"
 formatCurrency(199);            // "199,00 kr"
 ```
 
-### 3. `classNames`
+#### 3. `classNames`
 
 **Vad:** Sätter ihop CSS-klasser dynamiskt.
 
@@ -74,7 +86,7 @@ classNames("btn", isActive && "btn-active");
 // isActive false → "btn"
 ```
 
-### 4. `featureFlags`
+#### 4. `featureFlags`
 
 **Vad:** Slår på eller av funktioner i appen.
 
@@ -86,7 +98,7 @@ if (isFeatureEnabled("newCheckout")) {
 }
 ```
 
-### 5. `testHelpers`
+#### 5. `testHelpers`
 
 **Vad:** Hjälper när man testar komponenter automatiskt.
 
