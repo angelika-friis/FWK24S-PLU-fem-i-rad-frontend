@@ -1,6 +1,10 @@
+import { RegisterForm } from "5irad-components";
+
 const Register = () => {
     return (
-        <div>Register</div>
+        <div>
+            <RegisterForm />
+        </div>
     )
 }
-export default Register
+export default Register;

@@ -1,7 +1,9 @@
+import { StartNewGame } from "5irad-components";
+
 const Lobby = () => {
     return (
         <div>
-            Start new Game
+            <StartNewGame />
         </div>
     )
 }
