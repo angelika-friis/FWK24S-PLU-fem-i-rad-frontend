@@ -16,6 +16,8 @@ const BoardProvider = ({ children }) => {
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     ]);
+    
+    const [gameover, setGameover] = useState(false);
 
     const { fillTile, createGame, getTiles } = useApi();
 
@@ -31,14 +33,15 @@ const BoardProvider = ({ children }) => {
     */
 
     const setTile = async (gameId, row, column, token) => {
-        if(getTile(row, column) != null) return;
+        if(getTile(row, column) != null || gameover) return;
 
         const updatedTiles = await fillTile(gameId, row, column, token);
 
         setTiles(updatedTiles.tiles);
 
         if(updatedTiles.winner != null) {
-            console.log("We have a winner! ", token)
+            console.log("We have a winner! ", token);
+            setGameover(true);
         }
     }
 
@@ -53,6 +56,18 @@ const BoardProvider = ({ children }) => {
     }
 
     const createBoard = async () => {
+        setTiles([
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        ]);
         const gameId = createGame();
         return gameId;
     }
