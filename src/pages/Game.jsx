@@ -1,4 +1,5 @@
 import { Board } from "5irad-components";
+import { useApi } from "../providers/ApiProvider";
 
 const Game = () => {
     const tiles = [
@@ -16,7 +17,7 @@ const Game = () => {
 
     return (
         <div>
-            <Board tiles={tiles} />
+            <Board tiles={tiles} useApi={useApi} />
         </div>
     )
 }
