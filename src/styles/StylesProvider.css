@@ -1,0 +1,40 @@
+@font-face {
+    font-family: "Inter";
+    src: url("/fonts/Inter_18pt-Regular.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Inter";
+    src: url("/fonts/Inter_18pt-Light.ttf") format("truetype");
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Inter";
+    src: url("/fonts/Inter_18pt-Bold.ttf") format("truetype");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+:root {
+    --font-family: "Inter", Tahoma;
+    --bg-color: #FFF;
+    --text-color: #000;
+    --color-pink: #FFE3FC;
+    --color-hotPink: #FF33EE;
+    --color-lightBlue: #E3F6FF;
+    --color-blue: #41C9E4;
+}
+
+:global(body) {
+    margin: 0;
+    font-family: var(--font-family);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
