@@ -18,6 +18,11 @@ git clone https://github.com/hampusvh/FWK24S-PLU-tamagotchi-components.git
 npm install
 ```
 
+3. Skapa .env i root 
+```md
+VITE_API_SERVER_URL="http://localhost:5000/api"
+```
+
 ## Starta Storybook
 
 Starta så här:
