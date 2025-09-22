@@ -34,6 +34,8 @@ const ApiProvider = ({ children }) => {
 
             if(res.ok && res.status == 200) {
                 const data = await res.json();
+
+                return data.gameId;
             } else {
                 throw new Error("Failed to create game!", res.status);
             }
@@ -57,11 +59,15 @@ const ApiProvider = ({ children }) => {
             });
 
             if(res.ok && res.status == 200) {
-                const data = await res.json();
-
+                const decoded = await res.json();
+                const data = decoded.data;
                 const tiles = data.tiles;
+                const winner = data.winner;
 
-                return tiles;
+                return {
+                    tiles, 
+                    winner
+                };
             } else {
                 throw new Error("Failed to fill tile!", res.status);
             }

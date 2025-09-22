@@ -35,7 +35,11 @@ const BoardProvider = ({ children }) => {
 
         const updatedTiles = await fillTile(gameId, row, column, token);
 
-        setTiles(updatedTiles);
+        setTiles(updatedTiles.tiles);
+
+        if(updatedTiles.winner != null) {
+            console.log("We have a winner! ", token)
+        }
     }
 
     const getTile = (row, column) => {
@@ -48,8 +52,9 @@ const BoardProvider = ({ children }) => {
         return entry ? entry[row][column] : null;
     }
 
-    const createBoard = () => {
-        createGame();
+    const createBoard = async () => {
+        const gameId = createGame();
+        return gameId;
     }
 
     return (
