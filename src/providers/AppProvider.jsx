@@ -5,15 +5,18 @@ import { AuthProvider } from './AuthProvider';
 import ApiProvider from './ApiProvider';
 import { BrowserRouter } from 'react-router-dom';
 import { StylesProvider } from './StylesProvider';
+import BoardProvider from './BoardProvider';
 
 const AppProvider = ({ children }) => (
     <ConfigProvider>
         <AuthProvider>
             <BrowserRouter>
                 <ApiProvider>
-                    <StylesProvider>
-                        {children}
-                    </StylesProvider>
+                    <BoardProvider>
+                        <StylesProvider>
+                            {children}
+                        </StylesProvider>
+                    </BoardProvider>
                 </ApiProvider>
             </BrowserRouter>
         </AuthProvider>
