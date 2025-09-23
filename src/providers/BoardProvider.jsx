@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 import { useApi } from "./ApiProvider";
 
 export const BoardContext = createContext();
@@ -19,18 +19,7 @@ const BoardProvider = ({ children }) => {
     
     const [gameover, setGameover] = useState(false);
 
-    const { fillTile, createGame, getGame, getTiles } = useApi();
-
-    /* Varför kallar det här på ALLA api metoder???
-    useEffect(() => {
-        const fetchTiles = async () => {
-            const result = await getTiles();
-            setTiles(result);
-        }
-
-        fetchTiles();
-    }, []);
-    */
+    const { fillTile, createGame, getGame } = useApi();
 
     const setTile = async (gameId, row, column, token) => {
         if(getTile(row, column) != null || gameover) return;
@@ -83,7 +72,7 @@ const BoardProvider = ({ children }) => {
     }
 
     return (
-        <BoardContext.Provider value={{ setTile, getTile, tiles, createBoard, validateBoard }}>
+        <BoardContext.Provider value={{ setTile, getTile, tiles, createBoard, validateBoard, setTiles }}>
             {children}
         </BoardContext.Provider>
     );

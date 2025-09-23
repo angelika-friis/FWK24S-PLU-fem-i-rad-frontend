@@ -3,9 +3,9 @@ import { createContext, useContext } from "react";
 export const ApiContext = createContext();
 
 const ApiProvider = ({ children }) => {
-    const getTiles = async () => {
+    const getTiles = async (gameId) => {
         try {
-            const res = await fetch(`${import.meta.env.VITE_API_SERVER_URL}/gomoku/tiles`, {
+            const res = await fetch(`${import.meta.env.VITE_API_SERVER_URL}/gomoku/get_tiles?gameId=${gameId}`, {
                 method: "GET",
                 headers: { "Content-Type": "application/json" },
             });
