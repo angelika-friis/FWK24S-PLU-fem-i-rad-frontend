@@ -19,7 +19,7 @@ const BoardProvider = ({ children }) => {
     
     const [gameover, setGameover] = useState(false);
 
-    const { fillTile, createGame, getTiles } = useApi();
+    const { fillTile, createGame, getGame, getTiles } = useApi();
 
     /* Varför kallar det här på ALLA api metoder???
     useEffect(() => {
@@ -72,8 +72,18 @@ const BoardProvider = ({ children }) => {
         return gameId;
     }
 
+    const validateBoard = async (gameId) => {
+        try {
+            const game = await getGame(gameId);
+
+            return Object.hasOwn(game, "gameId");
+        } catch(error) {
+            return false;
+        }
+    }
+
     return (
-        <BoardContext.Provider value={{ setTile, getTile, tiles, createBoard }}>
+        <BoardContext.Provider value={{ setTile, getTile, tiles, createBoard, validateBoard }}>
             {children}
         </BoardContext.Provider>
     );

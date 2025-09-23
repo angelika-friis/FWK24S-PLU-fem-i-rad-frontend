@@ -20,7 +20,7 @@ const ApiProvider = ({ children }) => {
                 throw new Error("Failed to create game!", res.status);
             }
         } catch(error) {
-            throw new Error("Error could not createGame in ApiProvider", error);
+            throw new Error("Error could not getTiles in ApiProvider", error);
         }
     }
 
@@ -76,8 +76,27 @@ const ApiProvider = ({ children }) => {
         }
     }
 
+    const getGame = async (gameId) => {
+        try {
+            const res = await fetch(`${import.meta.env.VITE_API_SERVER_URL}/gomoku/get_game?gameId=${gameId}`, {
+                method: "GET",
+                headers: { "Content-Type": "application/json" },
+            });
+
+            if(res.ok && res.status == 200) {
+                const data = await res.json();
+
+                return data.data;
+            } else {
+                throw new Error("Failed to get game!", res.message);
+            }
+        } catch(error) {
+            throw new Error("Error could not getGame in ApiProvider", error);
+        }
+    } 
+
     return (
-        <ApiContext.Provider value={{ createGame, fillTile, getTiles }}>
+        <ApiContext.Provider value={{ createGame, fillTile, getTiles, getGame }}>
             {children}
         </ApiContext.Provider>
     );
