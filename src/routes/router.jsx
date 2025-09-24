@@ -1,24 +1,49 @@
+import { useContext } from "react";
 import { Route, Routes } from "react-router-dom";
 import AppTemplate from "../templates/AppTemplate";
 import Login from "../pages/Login";
+import Logout from "../pages/Logout";
 import Lobby from "../pages/Lobby";
 import Register from "../pages/Register";
 import Game from "../pages/Game";
+import PublicRoute from "./PublicRoute";
+import ProtectedRoute from "./ProtectedRoute";
+import { AuthContext } from "../providers/AuthProvider";
 
 const Router = () => {
+    const { user } = useContext(AuthContext);
+
     return (
         <Routes>
-            <Route path="/login" element={<AppTemplate />}>
-                <Route index element={<Login />} />
+            <Route path="/login" element={<PublicRoute isAuthenticated={user != null} />}>
+                <Route element={<AppTemplate />}>
+                    <Route index element={<Login />} />
+                </Route>
             </Route>
-            <Route path="/register" element={<AppTemplate />}>
-                <Route index element={<Register />} />
+            <Route path="/register" element={<PublicRoute isAuthenticated={user != null} />}>
+                <Route element={<AppTemplate />}>
+                    <Route index element={<Register />} />
+                </Route>
             </Route>
-            <Route path="/lobby" element={<AppTemplate />}>
-                <Route index element={<Lobby />} />
+            <Route path="/lobby" element={<ProtectedRoute isAuthenticated={user != null} />}>
+                <Route element={<AppTemplate />}>
+                    <Route index element={<Lobby />} />
+                </Route>
             </Route>
-            <Route path="/game/:gameId" element={<AppTemplate />}>
-                <Route index element={<Game />} />
+            <Route exact path="/game" element={<ProtectedRoute isAuthenticated={user != null} />}>
+                <Route element={<AppTemplate />}>
+                    <Route index element={<Game />} />
+                </Route>
+            </Route>
+            <Route exact path="/game/:gameId" element={<ProtectedRoute isAuthenticated={user != null} />}>
+                <Route element={<AppTemplate />}>
+                    <Route index element={<Game />} />
+                </Route>
+            </Route>
+            <Route path="/logout" element={<ProtectedRoute isAuthenticated={user != null} />}>
+                <Route element={<AppTemplate />}>
+                    <Route index element={<Logout />} />
+                </Route>
             </Route>
         </Routes>
     );
