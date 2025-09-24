@@ -5,9 +5,7 @@ const Lobby = () => {
     const navigate = useNavigate();
 
     return (
-        <div>
-            <StartNewGame onRedirect={navigate} />
-        </div>
+        <StartNewGame onRedirect={navigate} />
     )
 }
 export default Lobby
