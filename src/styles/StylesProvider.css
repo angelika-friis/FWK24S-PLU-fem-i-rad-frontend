@@ -24,8 +24,9 @@
 
 :root {
     --font-family: "Inter", Tahoma;
-    --bg-color: #FFF;
-    --text-color: #000;
+    --font-size: 15px;
+    --bg-color: #f0f2f5;
+    --text-color: #212121;
     --color-pink: #FFE3FC;
     --color-hotPink: #FF33EE;
     --color-lightBlue: #E3F6FF;
@@ -35,6 +36,18 @@
 body {
     margin: 0;
     font-family: var(--font-family);
+    font-size: var(--font-size);
     background-color: var(--bg-color);
     color: var(--text-color);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+input, button {
+    font-size: inherit;
+    font-family: inherit;
+    color: inherit;
+    text-decoration: inherit;
 }
