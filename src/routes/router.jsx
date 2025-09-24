@@ -29,7 +29,7 @@ const Router = () => {
                     <Route index element={<Register />} />
                 </Route>
             </Route>
-            <Route path="/lobby" element={<ProtectedRoute isAuthenticated={user != null} />}>
+            <Route path="/" element={<ProtectedRoute isAuthenticated={user != null} />}>
                 <Route element={<AppTemplate />}>
                     <Route index element={<Lobby />} />
                 </Route>

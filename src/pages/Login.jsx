@@ -22,7 +22,7 @@ const Login = () => {
 
             setAuth(result.jwt);
 
-            navigate("/lobby");
+            navigate("/");
         } catch(error) {
             console.log(error);
         }

@@ -13,14 +13,14 @@ const Game = () => {
 
     useEffect(() => {
         if(!params.gameId) {
-            navigate("/lobby");
+            navigate("/");
             return;
         }
 
         const checkValidate = async () => {
             const result = await validateBoard(params.gameId);
             if(!result) {
-                navigate("/lobby");
+                navigate("/");
                 return;
             }
 
