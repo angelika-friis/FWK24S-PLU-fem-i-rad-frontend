@@ -51,3 +51,13 @@ input, button {
     color: inherit;
     text-decoration: inherit;
 }
+
+.errorBox {
+    background-color: #E43636;
+    padding: 20px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    width: 50%;
+    color: #FFF;
+    text-align: center;
+}

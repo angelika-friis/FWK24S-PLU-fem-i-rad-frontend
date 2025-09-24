@@ -28,16 +28,16 @@ const Register = () => {
     }
 
     return (
-        <div>
+        <>
+            {error &&
+                <div className="errorBox">{error}</div>
+            }
             <RegisterForm
                 onSubmit={onSubmit}
                 setUsername={setUsername}
                 setPassword={setPassword}
             />
-            {error &&
-                <p>{error}</p>
-            }
-        </div>
+        </>
     )
 }
 
