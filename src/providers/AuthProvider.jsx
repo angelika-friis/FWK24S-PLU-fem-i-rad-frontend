@@ -5,6 +5,7 @@ export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
+    const [authReady, setAuthReady] = useState(false);
 
     useEffect(() => {
         const cache = localStorage.getItem("user");
@@ -25,6 +26,10 @@ const AuthProvider = ({ children }) => {
             }
         }
     }, []);
+
+    useEffect(() => {
+        setAuthReady(true);
+    }, [user]);
 
     const authenticate = async (username, password) => {
         const res = await fetch(`${import.meta.env.VITE_API_SERVER_URL}/auth/login`, {
@@ -67,7 +72,7 @@ const AuthProvider = ({ children }) => {
     }
 
     return (
-        <AuthContext.Provider value={{ authenticate, setAuth, user, clearAuth }}>
+        <AuthContext.Provider value={{ authenticate, setAuth, user, clearAuth, authReady }}>
             {children}
         </AuthContext.Provider>
     );

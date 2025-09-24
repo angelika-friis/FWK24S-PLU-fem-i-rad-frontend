@@ -11,7 +11,11 @@ import ProtectedRoute from "./ProtectedRoute";
 import { AuthContext } from "../providers/AuthProvider";
 
 const Router = () => {
-    const { user } = useContext(AuthContext);
+    const { user, authReady } = useContext(AuthContext);
+
+    if(!authReady) {
+        return (<>Loading...</>);
+    }
 
     return (
         <Routes>
