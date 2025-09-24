@@ -1,9 +1,11 @@
 import { createContext, useContext, useState } from "react";
 import { useApi } from "./ApiProvider";
+import { AuthContext } from "./AuthProvider";
 
 export const BoardContext = createContext();
 
 const BoardProvider = ({ children }) => {
+    const { user } = useContext(AuthContext);
     const { addPlayer } = useApi();
 
     const [tiles, setTiles] = useState([
@@ -71,7 +73,15 @@ const BoardProvider = ({ children }) => {
         try {
             const game = await getGame(gameId);
 
-            return Object.hasOwn(game, "gameId");
+            if(!game) return false;
+
+            const players = game.players;
+
+            if(!players || (players && players.length < 1)) return false;
+
+            if(!players.includes(user.id)) return false;
+
+            return true;
         } catch(error) {
             return false;
         }
