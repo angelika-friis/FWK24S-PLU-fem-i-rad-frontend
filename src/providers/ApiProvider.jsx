@@ -1,13 +1,19 @@
 import { createContext, useContext } from "react";
+import { AuthContext } from "./AuthProvider";
 
 export const ApiContext = createContext();
 
 const ApiProvider = ({ children }) => {
+    const { user } = useContext(AuthContext);
+
     const getTiles = async (gameId) => {
         try {
             const res = await fetch(`${import.meta.env.VITE_API_SERVER_URL}/gomoku/get-tiles?gameId=${gameId}`, {
                 method: "GET",
-                headers: { "Content-Type": "application/json" },
+                headers: { 
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${user.jwt}`
+                },
             });
 
             if (res.ok && res.status == 200) {
@@ -28,7 +34,10 @@ const ApiProvider = ({ children }) => {
         try {
             const res = await fetch(`${import.meta.env.VITE_API_SERVER_URL}/gomoku/create-game`, {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
+                headers: { 
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${user.jwt}`
+                },
                 body: JSON.stringify({})
             });
 
@@ -49,7 +58,10 @@ const ApiProvider = ({ children }) => {
         try {
             const res = await fetch(`${import.meta.env.VITE_API_SERVER_URL}/gomoku/add-token`, {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
+                headers: { 
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${user.jwt}`
+                },
                 body: JSON.stringify({
                     gameId: gameId,
                     row: row,
@@ -80,7 +92,10 @@ const ApiProvider = ({ children }) => {
         try {
             const res = await fetch(`${import.meta.env.VITE_API_SERVER_URL}/gomoku/get-game?gameId=${gameId}`, {
                 method: "GET",
-                headers: { "Content-Type": "application/json" },
+                headers: { 
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${user.jwt}`
+                },
             });
 
             if (res.ok && res.status == 200) {
