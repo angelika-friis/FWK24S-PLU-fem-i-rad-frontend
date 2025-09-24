@@ -1,5 +1,6 @@
 import { jwtDecode } from "jwt-decode";
 import { createContext, useEffect, useState } from "react";
+import { fetchClient } from "../utils/fetchClient";
 
 export const AuthContext = createContext();
 
@@ -9,14 +10,14 @@ const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         const cache = localStorage.getItem("user");
-        if(cache && !user) {
+        if (cache && !user) {
             const parsedCache = JSON.parse(cache);
             const decodedJwt = jwtDecode(parsedCache.jwt);
 
-            if(decodedJwt && decodedJwt.exp) {
+            if (decodedJwt && decodedJwt.exp) {
                 const dateNow = new Date();
-                const expiryDate = new Date(decodedJwt.exp*1000);
-                if(dateNow > expiryDate) {
+                const expiryDate = new Date(decodedJwt.exp * 1000);
+                if (dateNow > expiryDate) {
                     clearAuth();
                 } else {
                     setUser(JSON.parse(cache));
@@ -41,11 +42,11 @@ const AuthProvider = ({ children }) => {
         let data = null;
         try {
             data = await res.json();
-        } catch(error) {
+        } catch (error) {
             throw new Error("Could not perform authentication!", error)
         }
-        
-        if(res.ok && res.status == 200) {
+
+        if (res.ok && res.status == 200) {
             return data;
         } else {
             throw new Error(data.message);
@@ -71,8 +72,16 @@ const AuthProvider = ({ children }) => {
         setUser(null);
     }
 
+    const registerUser = async (username, password) => {
+        const res = await fetchClient("/auth/register", {
+            method: "POST",
+            body: { username, password }
+        });
+        return res;
+    };
+
     return (
-        <AuthContext.Provider value={{ authenticate, setAuth, user, clearAuth, authReady }}>
+        <AuthContext.Provider value={{ authenticate, setAuth, user, clearAuth, registerUser }}>
             {children}
         </AuthContext.Provider>
     );
