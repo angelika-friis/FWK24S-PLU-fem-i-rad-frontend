@@ -6,7 +6,11 @@ const AppTemplate = () => {
     return (
         <div className={styles.appTemplate}>
             <Menu />
-            <Outlet />
+            
+            <div className={styles.appWrapper}>
+                <Outlet />
+            </div>
+            
             <Footer />
         </div>
     );

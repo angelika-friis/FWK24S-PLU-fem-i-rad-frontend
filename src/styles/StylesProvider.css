@@ -32,14 +32,7 @@
     --color-blue: #41C9E4;
 }
 
-/*
-    Classes must be defined like this and all tags must be wrapped in :global()!!!
-
-    :global(.className) {
-        myProp: myValue;
-    }
-*/
-:global(body) {
+body {
     margin: 0;
     font-family: var(--font-family);
     background-color: var(--bg-color);
