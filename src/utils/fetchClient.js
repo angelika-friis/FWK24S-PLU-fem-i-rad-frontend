@@ -1,4 +1,4 @@
-const BASE_URL = import.meta.env.VITE_API_SERVER_URL || "";
+const BASE_URL = process.env.API_URL || "";
 
 export async function fetchClient(endpoint, options = {}) {
   const config = {
@@ -10,14 +10,13 @@ export async function fetchClient(endpoint, options = {}) {
     body: options.body ? JSON.stringify(options.body) : undefined,
   };
 
-  try {
-    const response = await fetch(`${BASE_URL}${endpoint}`, config);
-    const data = await response.json().catch(() => ({}));
+  const response = await fetch(`${BASE_URL}${endpoint}`, config);
 
-    return { status: response.status, data };
-  } catch (err) {
-    console.error("Network/Unexpected error:", err);
-    throw err;
+  if (!response.ok) {
+    const errorData = await response.json().catch(() => ({}));
+    throw new Error(errorData.message || "Fetch error");
   }
+
+  return response.json();
 }
 
