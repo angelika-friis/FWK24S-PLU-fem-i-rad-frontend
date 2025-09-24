@@ -1,9 +1,11 @@
-import { createContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 import { useApi } from "./ApiProvider";
 
 export const BoardContext = createContext();
 
 const BoardProvider = ({ children }) => {
+    const { addPlayer } = useApi();
+
     const [tiles, setTiles] = useState([
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -57,7 +59,11 @@ const BoardProvider = ({ children }) => {
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
         ]);
-        const gameId = createGame();
+
+        const gameId = await createGame();
+
+        await addPlayer(gameId);
+
         return gameId;
     }
 
