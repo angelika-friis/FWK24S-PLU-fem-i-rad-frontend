@@ -29,13 +29,11 @@ const Login = () => {
     }
 
     return (
-        <div>
-            <LoginForm 
-                onSubmit={onSubmit} 
-                setUsername={setUsername}
-                setPassword={setPassword}
-            />
-        </div>
+        <LoginForm 
+            onSubmit={onSubmit} 
+            setUsername={setUsername}
+            setPassword={setPassword}
+        />
     )
 }
 
