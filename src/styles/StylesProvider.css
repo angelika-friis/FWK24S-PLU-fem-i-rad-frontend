@@ -30,26 +30,54 @@
     font-display: swap;
 }
 
+/* no colors or theme specific rules here */
 :root {
     --font-family: "Inter", Tahoma;
     --font-size: 15px;
+}
+
+:root[data-theme="light"] {
     --bg-color: #f0f2f5;
     --text-color: #212121;
-    --color-pink: #FFE3FC;
-    --color-hotPink: #FF33EE;
-    --color-lightBlue: #E3F6FF;
-    --color-blue: #41C9E4;
+    --text-link-hover: #000;
+    --accent: #E45A92;
+    --accent-hover: #e979a6;
+    --secondary-accent: #272727;
+    --secondary-accent-hover: #000;
+    --secondary-button-text-color: #FFF;
+    --input-bg-color: linear-gradient(to bottom, #fff, hsl(336, 72%, 95%));
+    --input-border-color: hsl(336, 72%, 95%);
+    --menu-bg-color: #272727;
+    --menu-expanded-bg-color: #FFF;
+    --switch-bg-color: #FFF;
+    --switch-marker-bg-color: #272727;
+    --divider-border-color: rgba(0, 0, 0, 0.05);
+    --footer-top-bg-color: #FFF;
+    --footer-bottom-bg-color: #272727;
+    --footer-bottom-text-color: #FFF;
+    --main-content-container-bg-color: #FFF;
 }
 
 :root[data-theme="dark"] {
-    --font-family: "Inter", Tahoma;
-    --font-size: 15px;
-    --bg-color: #000;
-    --text-color: #212121;
-    --color-pink: #FFE3FC;
-    --color-hotPink: #FF33EE;
-    --color-lightBlue: #E3F6FF;
-    --color-blue: #41C9E4;
+    --bg-color: #000017;
+    --text-color: hsl(240, 92%, 97%);
+    --text-link-hover: #FFF;
+    --accent: #6037ff;
+    --accent-hover: rgb(109, 53, 193);
+    --secondary-accent: #E45A92;
+    --secondary-accent-hover: #e979a6;
+    --secondary-button-text-color: #FFF;
+    --input-bg-color: #1c183d;
+    --input-border-color: #333065;
+    --menu-bg-color: #000017;
+    --menu-expanded-bg-color: linear-gradient(135deg, #1c183d, #0a0927);
+    --switch-bg-color: #FFF;
+    --switch-marker-bg-color: #272727;
+    --divider-border-color: rgba(255, 255, 255, 0.05);
+    --footer-top-bg-color: linear-gradient(135deg, #1c183d, #0a0927);
+    --footer-bottom-bg-color: #000017;
+    --footer-bottom-text-color: #FFF;
+    --main-content-container-bg-color: linear-gradient(135deg, #1c183d, #0a0927);
 }
 
 /* opt-in transition only while toggling to avoid animating on page load */

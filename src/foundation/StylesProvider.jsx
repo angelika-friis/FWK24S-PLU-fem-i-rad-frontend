@@ -25,7 +25,7 @@ export const StylesProvider = ({ children }) => {
                 root.classList.add("theme-animating");
 
                 setTheme(next);
-                
+
                 setTimeout(() => root.classList.remove("theme-animating"), 300);
             },
         }),
