@@ -7,6 +7,11 @@
     min-height: 100vh;
 }
 
-body {
-    margin: 0;
+.appTemplate .appWrapper {
+    width: 50%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }

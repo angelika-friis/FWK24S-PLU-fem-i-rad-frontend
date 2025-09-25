@@ -12,10 +12,15 @@ const Game = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
+        if(!params.gameId) {
+            navigate("/");
+            return;
+        }
+
         const checkValidate = async () => {
             const result = await validateBoard(params.gameId);
             if(!result) {
-                navigate("/lobby");
+                navigate("/");
                 return;
             }
 

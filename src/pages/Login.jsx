@@ -1,11 +1,13 @@
 import { LoginForm } from "5irad-components";
 import { useContext, useState } from "react";
 import { AuthContext } from "../providers/AuthProvider";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-    const { authenticate } = useContext(AuthContext);
+    const { authenticate, setAuth } = useContext(AuthContext);
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const navigate = useNavigate();
 
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -18,20 +20,21 @@ const Login = () => {
                 return;
             }
 
-            console.log(result.message);
+            setAuth(result.jwt);
+
+            navigate("/");
         } catch(error) {
             console.log(error);
         }
     }
 
     return (
-        <div>
-            <LoginForm 
-                onSubmit={onSubmit} 
-                setUsername={setUsername}
-                setPassword={setPassword}
-            />
-        </div>
+        <LoginForm 
+            onSubmit={onSubmit} 
+            setUsername={setUsername}
+            setPassword={setPassword}
+        />
     )
 }
-export default Login
+
+export default Login;
