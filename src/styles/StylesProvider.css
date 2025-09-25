@@ -76,7 +76,7 @@
     --divider-border-color: rgba(255, 255, 255, 0.05);
     --footer-top-bg-color: linear-gradient(135deg, #1c183d, #0a0927);
     --footer-bottom-bg-color: #000017;
-    --footer-bottom-text-color: #FFF;
+    --footer-bottom-text-color: var(--text-color);
     --main-content-container-bg-color: linear-gradient(135deg, #1c183d, #0a0927);
 }
 
