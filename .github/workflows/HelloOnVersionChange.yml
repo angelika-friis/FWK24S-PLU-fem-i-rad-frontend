@@ -21,7 +21,7 @@ jobs:
     - name: Hello World
       if: steps.check.outputs.changed == "true"
       run: |
-        echo: "Hello world - new version ${{ steps.check.outputs.version ]] (type: ${{ steps.check.outputs.type }})"
+        echo: "Hello world - new version ${{ steps.check.outputs.version }} (type: ${{ steps.check.outputs.type }})"
 
     - name: No Change
       if: steps.checks.outputs.changed != "true"
