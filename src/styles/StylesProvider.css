@@ -22,6 +22,14 @@
     font-display: swap;
 }
 
+@font-face {
+    font-family: "Unbounded";
+    src: url("/fonts/Unbounded-Bold.ttf") format("truetype");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
 :root {
     --font-family: "Inter", Tahoma;
     --font-size: 15px;
