@@ -1,0 +1,28 @@
+name: Hello on version change
+
+on:
+  push:
+    paths: [package.json]
+  pull_request:
+    paths: [package.json]
+
+jobs:
+  hello:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Check if version changed
+      id: check
+      uses: EndBug/version-check@v2
+      with:
+        diff-search: true
+
+    - name: Hello World
+      if: steps.check.outputs.changed == "true"
+      run: |
+        echo: "Hello world - new version ${{ steps.check.outputs.version ]] (type: ${{ steps.check.outputs.type }})"
+
+    - name: No Change
+      if: steps.checks.outputs.changed != "true"
+      run: echo "No version change in package.json"
