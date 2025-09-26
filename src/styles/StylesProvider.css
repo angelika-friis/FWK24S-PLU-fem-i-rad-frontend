@@ -57,6 +57,7 @@
     --footer-bottom-bg-color: #272727;
     --footer-bottom-text-color: #FFF;
     --main-content-container-bg-color: #FFF;
+    --toaster-bg-color: #FFF;
 }
 
 :root[data-theme="dark"] {
@@ -80,6 +81,7 @@
     --footer-bottom-bg-color: #000017;
     --footer-bottom-text-color: var(--text-color);
     --main-content-container-bg-color: linear-gradient(135deg, #1c183d, #0a0927);
+    --toaster-bg-color: #27234f;
 }
 
 /* opt-in transition only while toggling to avoid animating on page load */

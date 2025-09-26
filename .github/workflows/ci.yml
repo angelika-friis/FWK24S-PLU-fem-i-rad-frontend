@@ -13,5 +13,8 @@ jobs:
         DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
       uses: Ilshidur/action-discord@master
       with:
-        args: 'Ny push i frontend repot'
+        args: >
+            📢 Push i **${{ github.repository }}**
+            av **${{ github.actor }}**
+            meddelande: _${{ github.event.head_commit.message }}_
         
