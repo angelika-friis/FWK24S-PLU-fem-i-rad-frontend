@@ -45,6 +45,7 @@
     --secondary-accent: #272727;
     --secondary-accent-hover: #000;
     --secondary-button-text-color: #FFF;
+    --error-color: #B00020;
     --input-bg-color: linear-gradient(to bottom, #fff, hsl(336, 72%, 95%));
     --input-border-color: hsl(336, 72%, 95%);
     --menu-bg-color: #272727;
@@ -67,6 +68,7 @@
     --secondary-accent: #E45A92;
     --secondary-accent-hover: #e979a6;
     --secondary-button-text-color: #FFF;
+    --error-color: #CF6679;
     --input-bg-color: #1c183d;
     --input-border-color: #333065;
     --menu-bg-color: #000017;
