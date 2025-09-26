@@ -14,7 +14,7 @@ jobs:
       uses: Ilshidur/action-discord@master
       with:
         args: >
-            📢 Push i **${{ github.repository }}**
-            av **${{ github.actor }}**
-            meddelande: _${{ github.event.head_commit.message }}_
-        
+            📢 Push i **${{ github.repository }}**\n
+            Av: **${{ github.actor }}**\n
+            Meddelande: _${{ github.event.head_commit.message }}_\n
+            [Commit-länk](${{ github.event.head_commit.url }})
