@@ -10,10 +10,13 @@ import PublicRoute from "./PublicRoute";
 import ProtectedRoute from "./ProtectedRoute";
 import { AuthContext } from "../providers/AuthProvider";
 
+import About from "../pages/About";
+import Contact from "../pages/Contact";
+
 const Router = () => {
     const { user, authReady } = useContext(AuthContext);
 
-    if(!authReady) {
+    if (!authReady) {
         return (<>Loading...</>);
     }
 
@@ -28,6 +31,13 @@ const Router = () => {
                 <Route element={<AppTemplate />}>
                     <Route index element={<Register />} />
                 </Route>
+            </Route>
+            <Route path="/about" element={<AppTemplate />}>
+                <Route index element={<About />} />
+            </Route>
+
+            <Route path="/contact" element={<AppTemplate />}>
+                <Route index element={<Contact />} />
             </Route>
             <Route path="/" element={<ProtectedRoute isAuthenticated={user != null} />}>
                 <Route element={<AppTemplate />}>
