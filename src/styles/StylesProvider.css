@@ -134,45 +134,6 @@ button {
     text-align: center;
 }
 
-/*-----About Page-----*/
-
-.about-content {
-    max-width: 900px;
-    margin: 3rem auto 5rem;
-    padding: 0 1rem;
-}
-
-.about-content h1 {
-    font-family: "Unbounded", var(--font-family);
-    font-weight: 700;
-    letter-spacing: 0.2px;
-    line-height: 1.25;
-    margin: 0 0 0.75rem;
-}
-
-.about-content p,
-.about-content blockquote {
-    max-width: 45rem;
-    line-height: 1.6;
-}
-
-.about-content blockquote {
-    margin: 0.6rem 0 0.8rem;
-    padding-left: 0.75rem;
-    border-left: 3px solid var(--accent);
-    font-style: italic;
-    opacity: 0.9;
-    background: rgba(0, 0, 0, 0.02);
-}
-
-.about-hr {
-    height: 1px;
-    border: 0;
-    background: var(--divider-border-color);
-    max-width: 45rem;
-    margin: 1.2rem 0 0.8rem;
-}
-
 /*-----Contact Page-----*/
 
 .contact-content {
