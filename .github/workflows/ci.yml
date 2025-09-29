@@ -13,8 +13,7 @@ jobs:
         DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
       uses: Ilshidur/action-discord@master
       with:
-        args: >
-            📢 Push i **${{ github.repository }}**\n
-            Av: **${{ github.actor }}**\n
-            Meddelande: _${{ github.event.head_commit.message }}_\n
-            [Commit-länk](${{ github.event.head_commit.url }})
+        args: |
+            📢 Push i **${{ github.repository }}**
+            av **${{ github.actor }}**.
+            [_${{ github.event.head_commit.message }}_](${{ github.event.head_commit.url }})
