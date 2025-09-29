@@ -9,7 +9,19 @@ const dirname = typeof __dirname !== 'undefined' ? __dirname : path.dirname(file
 // More info at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon
 export default defineConfig({
   plugins: [react()],
-  resolve: { dedupe: ["react", "react-dom"] },
+  resolve: {
+    preserveSymlinks: true,
+    dedupe: ["react", "react-dom", "@akkelw/5irad-board-ctx"], // <- keep singleton
+  },
+  optimizeDeps: {
+    // don't prebundle the ctx; let it be a single runtime module
+    exclude: ["@akkelw/5irad-board-ctx"],
+    // usually you can omit components here once it's published
+  },
+  ssr: {
+    // if you use SSR/tests, treat components as external deps
+    noExternal: [],
+  },
   test: {
     projects: [{
       extends: true,

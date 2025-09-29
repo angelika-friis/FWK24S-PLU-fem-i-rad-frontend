@@ -1,4 +1,4 @@
-import { AboutContent } from "5irad-components";
+import { AboutContent } from "@akkelw/5irad-components";
 
 const About = () =>
 

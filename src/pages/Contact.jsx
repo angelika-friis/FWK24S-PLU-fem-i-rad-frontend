@@ -1,4 +1,4 @@
-import { ContactForm } from "5irad-components";
+import { ContactForm } from "@akkelw/5irad-components";
 
 const Contact = () => {
     return (

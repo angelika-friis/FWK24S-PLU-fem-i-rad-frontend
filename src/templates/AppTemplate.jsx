@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import styles from "./AppTemplate.module.css";
-import { Menu, Footer } from "5irad-components";
+import { Menu, Footer } from "@akkelw/5irad-components";
 import { useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import { useTheme } from "../foundation/StylesProvider";

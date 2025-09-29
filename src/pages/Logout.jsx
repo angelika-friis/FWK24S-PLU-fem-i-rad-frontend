@@ -1,4 +1,4 @@
-import { LoginForm } from "5irad-components";
+import { LoginForm } from "@akkelw/5irad-components";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import { useNavigate } from "react-router-dom";

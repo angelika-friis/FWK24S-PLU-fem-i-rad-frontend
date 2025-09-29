@@ -1,4 +1,4 @@
-import { StartNewGame } from "5irad-components";
+import { StartNewGame } from "@akkelw/5irad-components";
 import { useNavigate } from "react-router-dom";
 
 const Lobby = () => {

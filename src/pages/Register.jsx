@@ -1,4 +1,4 @@
-import { RegisterForm, Toaster } from "5irad-components";
+import { RegisterForm, Toaster } from "@akkelw/5irad-components";
 import { useState, useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import { useNavigate } from "react-router-dom";

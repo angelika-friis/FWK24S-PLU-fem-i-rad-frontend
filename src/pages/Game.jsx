@@ -1,4 +1,4 @@
-import { Board } from "5irad-components";
+import { Board } from "@akkelw/5irad-components";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useApi } from "../providers/ApiProvider";
