@@ -133,18 +133,3 @@ button {
     color: #FFF;
     text-align: center;
 }
-
-/*-----Contact Page-----*/
-
-.contact-content {
-    max-width: 900px;
-    margin: 3rem auto 5rem;
-    padding: 0 1rem;
-}
-
-.contact-content h1 {
-    font-family: "Unbounded", var(--font-family);
-    font-weight: 700;
-    letter-spacing: 0.2px;
-    margin: 0 0 1rem;
-}
