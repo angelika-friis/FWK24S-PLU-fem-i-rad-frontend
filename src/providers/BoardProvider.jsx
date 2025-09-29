@@ -24,8 +24,20 @@ const BoardProvider = ({ children }) => {
 
     const { fillTile, createGame, getGame } = useApi();
 
-    const setTile = async (gameId, row, column, token) => {
+    const setTile = async (gameId, row, column) => {
         if(getTile(row, column) != null || gameover) return;
+
+        const game = await getGame(gameId);
+
+        if(!game) return false;
+
+        const players = game.players;
+
+        if(!players || (players && players.length < 1)) return false;
+
+        if(!players.includes(user.id)) return false;
+
+        const token = players[0] == user.id ? 1 : 2;
 
         const updatedTiles = await fillTile(gameId, row, column, token);
 
@@ -63,9 +75,27 @@ const BoardProvider = ({ children }) => {
 
         const gameId = await createGame();
 
-        await addPlayer(gameId);
+        const data = await addPlayer(gameId);
 
-        return gameId;
+        if(!data.success) {
+            console.error(data.message);
+            return;
+        }
+
+        return data.gameId;
+    }
+
+    const joinBoard = async (gameId) => {
+        const data = await addPlayer(gameId);
+        
+        if(!data.success) {
+            console.error(data.message);
+            return;
+        }
+
+        console.log(data.message)
+
+        return true;
     }
 
     const validateBoard = async (gameId) => {
@@ -87,7 +117,7 @@ const BoardProvider = ({ children }) => {
     }
 
     return (
-        <BoardCtx.Provider value={{ setTile, getTile, tiles, createBoard, validateBoard, setTiles }}>
+        <BoardCtx.Provider value={{ setTile, getTile, tiles, createBoard, validateBoard, setTiles, joinBoard }}>
             {children}
         </BoardCtx.Provider>
     );

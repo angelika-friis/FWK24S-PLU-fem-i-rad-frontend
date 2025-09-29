@@ -112,27 +112,31 @@ const ApiProvider = ({ children }) => {
 
     // addPlayer always adds the currently logged in player
     const addPlayer = async (gameId) => {
-        try {
-            const res = await fetch(`${import.meta.env.VITE_API_SERVER_URL}/gomoku/add-player`, {
-                method: "POST",
-                headers: { 
-                    "Content-Type": "application/json",
-                    "Authorization": `Bearer ${user.jwt}`
-                },
-                body: JSON.stringify({
-                    gameId: gameId
-                })
-            });
+        const res = await fetch(`${import.meta.env.VITE_API_SERVER_URL}/gomoku/add-player`, {
+            method: "POST",
+            headers: { 
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${user.jwt}`
+            },
+            body: JSON.stringify({
+                gameId: gameId
+            })
+        });
 
-            if (res.ok && res.status == 200) {
-                const data = await res.json();
+        const data = await res.json();
 
-                console.log(data.message);
-            } else {
-                throw new Error("Failed to add player to game!", res.message);
+        if (res.ok && res.status == 200) {
+            return {
+                success: true,
+                message: data.message,
+                gameId: data.gameId,
+                playerId: data.playerId
             }
-        } catch (error) {
-            throw new Error("Error could not addPlayer in ApiProvider", error);
+        } else {
+            return {
+                success: false,
+                message: data.message
+            }
         }
     }
 
