@@ -1,11 +1,11 @@
 import { Board } from "5irad-components";
 import { useContext, useEffect, useState } from "react";
-import { BoardContext } from "../providers/BoardProvider";
 import { useNavigate, useParams } from "react-router-dom";
 import { useApi } from "../providers/ApiProvider";
+import { useBoard } from "@akkelw/5irad-board-ctx";
 
 const Game = () => {
-    const { tiles, validateBoard, setTiles } = useContext(BoardContext);
+    const { tiles, validateBoard, setTiles } = useBoard();
     const { getTiles } = useApi();
     const params = useParams();
     const navigate = useNavigate();

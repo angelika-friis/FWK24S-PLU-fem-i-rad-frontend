@@ -1,8 +1,7 @@
 import { createContext, useContext, useState } from "react";
 import { useApi } from "./ApiProvider";
 import { AuthContext } from "./AuthProvider";
-
-export const BoardContext = createContext();
+import { BoardCtx } from "@akkelw/5irad-board-ctx";
 
 const BoardProvider = ({ children }) => {
     const { user } = useContext(AuthContext);
@@ -88,9 +87,9 @@ const BoardProvider = ({ children }) => {
     }
 
     return (
-        <BoardContext.Provider value={{ setTile, getTile, tiles, createBoard, validateBoard, setTiles }}>
+        <BoardCtx.Provider value={{ setTile, getTile, tiles, createBoard, validateBoard, setTiles }}>
             {children}
-        </BoardContext.Provider>
+        </BoardCtx.Provider>
     );
 }
 
