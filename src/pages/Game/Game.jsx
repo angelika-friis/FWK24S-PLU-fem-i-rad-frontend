@@ -1,11 +1,12 @@
-import { Board } from "@akkelw/5irad-components";
+import { Board, PlayerTurn } from "@akkelw/5irad-components";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { useApi } from "../providers/ApiProvider";
+import { useApi } from "../../providers/ApiProvider";
 import { useBoard } from "@akkelw/5irad-board-ctx";
+import styles from './Game.module.css';
 
 const Game = () => {
-    const { tiles, validateBoard, setTiles } = useBoard();
+    const { tiles, validateBoard, setTiles, playerTurn } = useBoard();
     const { getTiles } = useApi();
     const params = useParams();
     const navigate = useNavigate();
@@ -41,6 +42,15 @@ const Game = () => {
         }
     }, [loading]);
 
-    return loading ? <>Loading...</> : <Board tiles={tiles} />;
+    return (
+        loading 
+        ? <>Loading...</> 
+        : <div className={styles.GameContentContainer}>
+            <PlayerTurn player={playerTurn}/>
+            <div className={styles.BoardContainer}>
+            <Board tiles={tiles} className={styles.Board}/>
+            </div>
+        </div>
+    );
 }
 export default Game

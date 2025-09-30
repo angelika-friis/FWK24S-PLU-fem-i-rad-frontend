@@ -5,7 +5,7 @@ import Login from "../pages/Login";
 import Logout from "../pages/Logout";
 import Lobby from "../pages/Lobby";
 import Register from "../pages/Register";
-import Game from "../pages/Game";
+import Game from "../pages/Game/Game";
 import PublicRoute from "./PublicRoute";
 import ProtectedRoute from "./ProtectedRoute";
 import { AuthContext } from "../providers/AuthProvider";
