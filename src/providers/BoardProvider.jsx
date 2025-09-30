@@ -21,8 +21,8 @@ const BoardProvider = ({ children }) => {
     ]);
     
     const [gameover, setGameover] = useState(false);
-    const [round, setRound] = useState(null);
-    const [playerTurn, setPlayerTurn] = useState(null);
+    const [round, setRound] = useState(0);
+    const [isYourTurn, setIsYourTurn] = useState(true);
 
     const { fillTile, createGame, getGame } = useApi();
 
@@ -45,7 +45,7 @@ const BoardProvider = ({ children }) => {
 
         setTiles(updatedTiles.tiles);
         setRound(updatedTiles.round);
-        setPlayerTurn(updatedTiles.round % 2 === 1 ? 1 : 2);
+        setIsYourTurn(updatedTiles.round % 2 === 1 ? true : false); //todo: make functionable, this is only for testing + move logic to backend
 
         if(updatedTiles.winner != null) {
             console.log("We have a winner! ", token);
@@ -121,7 +121,7 @@ const BoardProvider = ({ children }) => {
     }
 
     return (
-        <BoardCtx.Provider value={{ setTile, getTile, tiles, createBoard, validateBoard, setTiles, joinBoard, round, playerTurn }}>
+        <BoardCtx.Provider value={{ setTile, getTile, tiles, createBoard, validateBoard, setTiles, joinBoard, round, isYourTurn }}>
             {children}
         </BoardCtx.Provider>
     );
