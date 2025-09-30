@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { useApi } from "./ApiProvider";
 import { AuthContext } from "./AuthProvider";
 import { BoardCtx } from "@akkelw/5irad-board-ctx";
@@ -6,6 +6,11 @@ import { BoardCtx } from "@akkelw/5irad-board-ctx";
 const BoardProvider = ({ children }) => {
     const { user } = useContext(AuthContext);
     const { addPlayer } = useApi();
+    const [currentGameId, setCurrentGameId] = useState(null);
+
+    useEffect(() => {
+        console.log(currentGameId)
+    }, [currentGameId]);
 
     const [tiles, setTiles] = useState([
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -123,8 +128,12 @@ const BoardProvider = ({ children }) => {
         }
     }
 
+    const onEventDropToken = (payload) => {
+        console.log("->", currentGameId)
+    }
+
     return (
-        <BoardCtx.Provider value={{ setTile, getTile, tiles, createBoard, validateBoard, setTiles, joinBoard, round, isYourTurn }}>
+        <BoardCtx.Provider value={{ onEventDropToken, setTile, getTile, tiles, createBoard, validateBoard, setTiles, joinBoard, round, isYourTurn }}>
             {children}
         </BoardCtx.Provider>
     );
