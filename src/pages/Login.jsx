@@ -39,6 +39,7 @@ const Login = () => {
                 onSubmit={onSubmit}
                 setUsername={setUsername}
                 setPassword={setPassword}
+                onRegister={() => navigate("/register")}
             />
             {error && <Toaster
                 type="error"
