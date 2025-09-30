@@ -75,9 +75,11 @@ const ApiProvider = ({ children }) => {
                 const data = decoded.data;
                 const tiles = data.tiles;
                 const winner = data.winner;
+                const round = data.round;
 
                 return {
                     tiles,
+                    round,
                     winner
                 };
             } else {

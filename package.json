@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@akkelw/5irad-board-ctx": "^1.0.0",
-    "@akkelw/5irad-components": "^1.0.8",
+    "@akkelw/5irad-components": "^1.1.6",
     "@akkelw/loginform": "^1.0.0",
     "@iconify/react": "^6.0.2",
     "jwt-decode": "^4.0.0",

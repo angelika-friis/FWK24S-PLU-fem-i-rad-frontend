@@ -1,0 +1,13 @@
+.GameContentContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 15px;
+    width: 100dvw;
+    align-items: center;
+}
+
+.BoardContainer {
+    width: 385px;
+    align-self: center;
+}
