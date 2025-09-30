@@ -45,7 +45,7 @@ const BoardProvider = ({ children }) => {
 
         setTiles(updatedTiles.tiles);
         setRound(updatedTiles.round);
-        setIsYourTurn(updatedTiles.round % 2 === 1 ? true : false); //todo: make functionable, this is only for testing + move logic to backend
+        setIsYourTurn(updatedTiles.isYourTurn);
 
         if(updatedTiles.winner != null) {
             console.log("We have a winner! ", token);
@@ -109,6 +109,9 @@ const BoardProvider = ({ children }) => {
             if(!game) return false;
 
             const players = game.players;
+            
+            setRound(game.round);
+            setIsYourTurn(game.isYourTurn);
 
             if(!players || (players && players.length < 1)) return false;
 

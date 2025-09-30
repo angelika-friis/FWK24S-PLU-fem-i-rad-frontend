@@ -76,11 +76,13 @@ const ApiProvider = ({ children }) => {
                 const tiles = data.tiles;
                 const winner = data.winner;
                 const round = data.round;
+                const isYourTurn = data.isYourTurn
 
                 return {
                     tiles,
                     round,
-                    winner
+                    winner,
+                    isYourTurn
                 };
             } else {
                 throw new Error("Failed to fill tile!", res.status);

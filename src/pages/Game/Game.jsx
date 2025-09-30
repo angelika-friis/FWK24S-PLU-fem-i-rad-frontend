@@ -13,10 +13,6 @@ const Game = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        console.info(typeof isYourTurn !== "boolean" || typeof round !== "number"); //if this returns false, the guard should not be shown...
-    }, [round, isYourTurn])
-
-    useEffect(() => {
         if (!params.gameId) {
             navigate("/");
             return;
