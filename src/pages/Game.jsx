@@ -3,9 +3,11 @@ import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useApi } from "../providers/ApiProvider";
 import { useBoard } from "@akkelw/5irad-board-ctx";
+import { useConnection } from "../providers/ConnectionProvider";
 
 const Game = () => {
-    const { tiles, validateBoard, setTiles } = useBoard();
+    const { tiles, validateBoard, setTiles, setCurrentGameId } = useBoard();
+    const { connect, disconnect } = useConnection();
     const { getTiles } = useApi();
     const params = useParams();
     const navigate = useNavigate();
@@ -13,6 +15,7 @@ const Game = () => {
 
     useEffect(() => {
         if(!params.gameId) {
+            disconnect();
             navigate("/");
             return;
         }
@@ -20,6 +23,7 @@ const Game = () => {
         const checkValidate = async () => {
             const result = await validateBoard(params.gameId);
             if(!result) {
+                disconnect();
                 navigate("/");
                 return;
             }
@@ -34,7 +38,9 @@ const Game = () => {
         if(!loading) {
             const fetchTiles = async () => {
                 const result = await getTiles(params.gameId);
+                setCurrentGameId(params.gameId);
                 setTiles(result);
+                connect();
             }
 
             fetchTiles();
