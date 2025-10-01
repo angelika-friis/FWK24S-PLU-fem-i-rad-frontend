@@ -6,7 +6,7 @@ import { useBoard } from "@akkelw/5irad-board-ctx";
 import styles from './Game.module.css';
 
 const Game = () => {
-    const { tiles, validateBoard, setTiles, round, isYourTurn, showEndDialog, setShowEndDialog, youWon } = useBoard();
+    const { tiles, validateBoard, setTiles, round, isYourTurn, showEndDialog, setShowEndDialog, isWinner } = useBoard();
     const { getTiles } = useApi();
     const params = useParams();
     const navigate = useNavigate();
@@ -42,15 +42,17 @@ const Game = () => {
         }
     }, [loading]);
 
+    //not working
     const handleClose = () => {
         setShowEndDialog(false);
+        console.log("Click!")
     }
 
     return (
         loading
             ? <>Loading...</>
             : <div className={styles.GameContentContainer}>
-                {showEndDialog && <WinScreen message={youWon ? "You won" : "You lost"} handleClose={handleClose} />}
+                {showEndDialog && <WinScreen message={isWinner ? "You won" : "You lost"} handleClose={handleClose} />}
                 <div className={styles.BoardContainer}>
                     <Board tiles={tiles} className={styles.Board} />
                 </div>
