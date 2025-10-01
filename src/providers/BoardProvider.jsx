@@ -25,9 +25,11 @@ const BoardProvider = ({ children }) => {
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     ]);
     
-    const [gameover, setGameover] = useState(false);
     const [round, setRound] = useState(0);
     const [isYourTurn, setIsYourTurn] = useState(true);
+    const [gameover, setGameover] = useState(false);
+    const [youWon, setYouWon] = useState(null);
+    const [showEndDialog, setShowEndDialog] = useState(false);
 
     const { fillTile, createGame, getGame } = useApi();
 
@@ -52,7 +54,6 @@ const BoardProvider = ({ children }) => {
 
         if(updatedTiles.winner != null) {
             console.log("We have a winner! ", token);
-            setGameover(true);
         }
     }
 
@@ -115,6 +116,12 @@ const BoardProvider = ({ children }) => {
             
             setRound(game.round);
             setIsYourTurn(game.isYourTurn);
+            setYouWon(game.youWon);
+
+            if(game.winner) {
+                setGameover(true);
+                setShowEndDialog(true);
+            };
 
             if(!players || (players && players.length < 1)) return false;
 
@@ -131,7 +138,7 @@ const BoardProvider = ({ children }) => {
     }
 
     return (
-        <BoardCtx.Provider value={{ setTile, getTile, tiles, createBoard, validateBoard, setTiles, joinBoard, round, isYourTurn, gameover }}>
+        <BoardCtx.Provider value={{ setTile, getTile, tiles, createBoard, validateBoard, setTiles, joinBoard, round, isYourTurn, youWon, showEndDialog, setShowEndDialog }}>
             {children}
         </BoardCtx.Provider>
     );
