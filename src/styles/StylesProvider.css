@@ -58,6 +58,13 @@
     --footer-bottom-text-color: #FFF;
     --main-content-container-bg-color: #FFF;
     --toaster-bg-color: #FFF;
+    --board-square-bg: linear-gradient(to bottom, #fff, hsl(336, 72%, 95%));
+    --board-square-border: 2px solid hsl(336, 72%, 95%);
+    --border-square-box-shadow: 0 0 8px rgba(233, 121, 166, 0.2) inset;
+    --player-token-cross: rgb(107,198,225);
+    --player-token-cross-hover: rgb(134, 210, 234);
+    --player-token-circle: rgb(235,72,231);
+    --player-token-circle-hover: rgb(231, 109, 229);
 }
 
 :root[data-theme="dark"] {
@@ -82,6 +89,13 @@
     --footer-bottom-text-color: var(--text-color);
     --main-content-container-bg-color: linear-gradient(135deg, #1c183d, #0a0927);
     --toaster-bg-color: #27234f;
+    --board-square-bg: #241f4f;
+    --board-square-border: 2px solid #343269;
+    --border-square-box-shadow: 0 0 15px rgba(0, 0, 0, 0.2) inset;
+    --player-token-cross: var(--accent);
+    --player-token-cross-hover: #7856fd;
+    --player-token-circle: #A36CFF;
+    --player-token-circle-hover: #b387ff;
 }
 
 /* opt-in transition only while toggling to avoid animating on page load */

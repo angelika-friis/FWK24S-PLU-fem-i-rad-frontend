@@ -49,8 +49,6 @@ const BoardProvider = ({ children }) => {
         const updatedTiles = await fillTile(gameId, row, column, token);
 
         setTiles(updatedTiles.tiles);
-        setRound(updatedTiles.round);
-        setIsYourTurn(updatedTiles.isYourTurn);
 
         if(updatedTiles.winner != null) {
             console.log("We have a winner! ", token);
@@ -133,7 +131,7 @@ const BoardProvider = ({ children }) => {
     }
 
     return (
-        <BoardCtx.Provider value={{ onEventDropToken, setTile, getTile, tiles, createBoard, validateBoard, setTiles, joinBoard, round, isYourTurn }}>
+        <BoardCtx.Provider value={{ setTile, getTile, tiles, createBoard, validateBoard, setTiles, joinBoard, round, isYourTurn, gameover }}>
             {children}
         </BoardCtx.Provider>
     );
