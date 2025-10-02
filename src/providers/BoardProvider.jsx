@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useRef, useState } from "react";
 import { useApi } from "./ApiProvider";
 import { AuthContext } from "./AuthProvider";
 import { BoardCtx } from "@akkelw/5irad-board-ctx";
@@ -7,10 +7,12 @@ const BoardProvider = ({ children }) => {
     const { user } = useContext(AuthContext);
     const { addPlayer } = useApi();
     const [currentGameId, setCurrentGameId] = useState(null);
+    const gameIdRef = useRef(null);
+    const userRef = useRef(user);
 
     useEffect(() => {
-        console.log(currentGameId)
-    }, [currentGameId]);
+        userRef.current = user;
+    }, [user]);
 
     const [tiles, setTiles] = useState([
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -107,6 +109,7 @@ const BoardProvider = ({ children }) => {
     }
 
     const validateBoard = async (gameId) => {
+        console.log("validating...", gameId)
         try {
             const game = await getGame(gameId);
 
@@ -127,6 +130,8 @@ const BoardProvider = ({ children }) => {
 
             if(!players.includes(user.id)) return false;
 
+            gameIdRef.current = gameId;
+
             return true;
         } catch(error) {
             return false;
@@ -134,11 +139,20 @@ const BoardProvider = ({ children }) => {
     }
 
     const onEventDropToken = (payload) => {
-        console.log("->", currentGameId)
+        if(gameIdRef.current != payload.gameId || payload.playerId == userRef.current.id) return;
+        
+        const tiles = payload.tiles;
+        const winner = payload.winner;
+
+        setTiles(tiles);
+
+        if(winner != null) {
+            console.log("We have a winner! ", token);
+        }
     }
 
     return (
-        <BoardCtx.Provider value={{ setTile, getTile, tiles, createBoard, validateBoard, setTiles, joinBoard, round, isYourTurn, isWinner, showEndDialog, setShowEndDialog }}>
+        <BoardCtx.Provider value={{ setTile, getTile, tiles, createBoard, validateBoard, setTiles, joinBoard, round, isYourTurn, isWinner, showEndDialog, setShowEndDialog, onEventDropToken, setCurrentGameId }}>
             {children}
         </BoardCtx.Provider>
     );

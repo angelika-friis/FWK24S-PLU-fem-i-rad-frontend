@@ -4,9 +4,11 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useApi } from "../../providers/ApiProvider";
 import { useBoard } from "@akkelw/5irad-board-ctx";
 import styles from './Game.module.css';
+import { useConnection } from "../../providers/ConnectionProvider";
 
 const Game = () => {
-    const { tiles, validateBoard, setTiles, round, isYourTurn, showEndDialog, setShowEndDialog, isWinner } = useBoard();
+    const { tiles, validateBoard, setTiles, round, isYourTurn, showEndDialog, setShowEndDialog, isWinner, setCurrentGameId } = useBoard();
+    const { connect, disconnect } = useConnection();
     const { getTiles } = useApi();
     const params = useParams();
     const navigate = useNavigate();
@@ -14,6 +16,7 @@ const Game = () => {
 
     useEffect(() => {
         if (!params.gameId) {
+            disconnect();
             navigate("/");
             return;
         }
@@ -21,6 +24,7 @@ const Game = () => {
         const checkValidate = async () => {
             const result = await validateBoard(params.gameId);
             if (!result) {
+                disconnect();
                 navigate("/");
                 return;
             }
@@ -35,6 +39,7 @@ const Game = () => {
         if (!loading) {
             const fetchTiles = async () => {
                 const result = await getTiles(params.gameId);
+                connect();
                 setTiles(result);
             }
 

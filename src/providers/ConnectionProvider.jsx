@@ -1,11 +1,13 @@
 import { createContext, useContext, useEffect } from "react";
 import { socket } from "../socket";
 import { useBoard } from "@akkelw/5irad-board-ctx";
+import { useParams } from "react-router-dom";
 
 export const ConnectionContext = createContext();
 
 const ConnectionProvider = ({ children }) => {
     const { onEventDropToken } = useBoard();
+    const params = useParams();
 
     useEffect(() => {
         socket.on("connect", onConnect);
@@ -14,8 +16,12 @@ const ConnectionProvider = ({ children }) => {
         console.log("ConnectionContext loaded.")
     }, []);
 
+    useEffect(() => {
+        console.log(params)
+    }, [params])
+
     const onConnect = () => {
-        console.log("connected")
+        console.log("connected", params)
     }
 
     const onDisconnect = () => {
@@ -23,7 +29,6 @@ const ConnectionProvider = ({ children }) => {
     }
 
     const onDropToken = (payload) => {
-        
         onEventDropToken(payload);
     }
     

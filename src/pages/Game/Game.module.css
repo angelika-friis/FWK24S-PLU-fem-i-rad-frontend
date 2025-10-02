@@ -1,10 +1,11 @@
 .GameContentContainer {
     display: flex;
-    flex-direction: column;
-    gap: 10px;
+    flex-direction: row;
+    gap: 100px;
     margin: 15px;
     width: 100dvw;
     align-items: center;
+    justify-content: center;
 }
 
 .BoardContainer {
